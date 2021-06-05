@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import './Carousel.scss';
+import Slider from './Slider';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Slider</h2>
+      <Slider height="300px" auto speed={2000}>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'pink'
+        }}>
+          1
+        </div>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'beige'
+        }}>
+          2
+        </div>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'skyblue'
+        }}>
+          3
+        </div>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'yellow'
+        }}>
+          4
+        </div>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'white'
+        }}>
+          5
+        </div>
+        <div style={{
+          width: '100%',
+          height: '300px',
+          background: 'cyan'
+        }}>
+          6
+        </div>
+      </Slider>
     </div>
   );
 }
