@@ -1,11 +1,21 @@
 import React, { useRef, useState } from 'react'
+import cn from 'classnames'
 import { useInterval } from './hooks'
 
 const Slider = ({ children, auto, speed }) => {
+  // add child item to infinite loop
   const initItem = React.Children.map(React.Children.toArray([
     children[children.length - 1],
-    ...children
-  ]), child => child)
+    ...children,
+  ]), child => (
+    React.cloneElement(child, {
+      style: {
+        ...child.props.style,
+        width: `${100 / children.length}%`
+      },
+      className: cn(child.props.className, 'contents__item')
+    })
+  ))
   const ref = useRef();
   const [position, setPosition] = useState(1);
   const [length] = useState(initItem.length);
