@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <h2>Slider</h2>
-      <Slider speed={2000}>
+      <Slider delay={3} transitionDuration={0.35} auto>
         <div
           style={{
             background: 'pink'

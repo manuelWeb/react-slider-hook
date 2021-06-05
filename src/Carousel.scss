@@ -17,35 +17,39 @@ body {
     // temps to RM (height from img)
     height: 300px;
     font-size: 20px;
-    transition: all 1s ease-in;
+    // transition: all 1s ease-in;
     display: flex;
   }
-}
+  &__btn {
+    display: flex;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 0 16px;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    transition: transform ease-in 0.1s;
+    &:hover {
+      transform: scale(1.1);
+    }
+    >img {
+      $size: 16px;
+      padding: $size;
+      height: $size;
+      width: $size;
+      background: white;
+      border-radius: 50%;
 
-.btn {
-  position: absolute;
-  z-index: 10;
-  width: 20px;
-  height: 20px;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 50%;
-  float: left;
-  transform: translateY(-50%);
-  border-radius: 50%;
-  color: #ccc;
-  cursor: pointer;
-  font-weight: bold;
-  background: rgba(255, 255, 255, 0.5);
-  margin: 0 0.5em;
-  user-select: none;
-  margin-top: -20px;
-  &:hover {
-    background: rgba(255, 255, 255, 0.9);
+    }
   }
-  &--right {
-    right: 0;
+  .btn {
+    &--right {
+      right: 0;
+    }
+    &--left {
+      left: 0;
+    }
   }
+
 }
