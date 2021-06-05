@@ -9,12 +9,13 @@ body {
 
 .slider {
   background: #ccc;
-  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
   &__contents {
+    // temps to RM (height from img)
+    height: 300px;
     font-size: 20px;
     transition: all 1s ease-in;
     display: flex;

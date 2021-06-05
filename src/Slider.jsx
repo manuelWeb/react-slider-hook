@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useInterval } from './hooks'
 
-const Slider = ({ height, children, auto, speed }) => {
+const Slider = ({ children, auto, speed }) => {
   const ref = useRef();
   const [position, setPosition] = useState(1);
   const [length] = useState(children.length + 1);
@@ -63,9 +63,6 @@ const Slider = ({ height, children, auto, speed }) => {
   return (
     <div
       className="slider"
-      height={height}
-      length={length}
-      percent={percent}
       onMouseLeave={() => {
         setIsMouseOver(false);
       }}
@@ -76,7 +73,7 @@ const Slider = ({ height, children, auto, speed }) => {
       <div className="btn btn--left" onClick={moveToLeft}>
         {'<'}
       </div>
-      <div className="btn btn--right" style={{ cssFloat: 'right' }} onClick={moveToRight}>
+      <div className="btn btn--right" onClick={moveToRight}>
         {'>'}
       </div>
       <div className="slider__contents" style={SlideStyle.contents} ref={ref}>
