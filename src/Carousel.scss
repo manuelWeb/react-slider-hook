@@ -12,6 +12,7 @@ body {
 }
 
 .slider {
+  min-height: 280px;
   background: #ccc;
   overflow: hidden;
   display: flex;
@@ -21,7 +22,7 @@ body {
   .contents {
     &__item {
       user-select: none;
-      border: 4px solid rgba($color: #33ff00, $alpha: .3);
+      // border: 4px solid rgba($color: #33ff00, $alpha: .3);
       img {
         width: 100%;
       }

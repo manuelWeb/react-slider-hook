@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { useInterval } from './hooks'
 import Arrow from './Arrow'
 const avertisement = [React.createElement('h1', null, 'NO CHILDREN!'), React.createElement('h1', null, 'PUT CHILDREN...')]
+
 const Slider = ({ transitionDuration, children = avertisement, auto, delay }) => {
   // add child item for infinite loop smooth transition
   const initItem = React.Children.map(React.Children.toArray([
@@ -31,52 +32,7 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }) =>
     }
   }
 
-  const moveToRight = _ => {
-    const currentTrans = -position * percent;
-    const translationPercentage = position < length - 1 ? currentTrans - percent : currentTrans;
-
-    if (position === length - 1) {
-      // return to 0 (last item copy) without transition
-      ref.current.style.transition = 'none';
-      ref.current.style.transform = `translateX(${0}%)`;
-      // before item[O] to first item force to repaint
-      ref.current.style.height = ref.current.offsetHeight
-      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
-      ref.current.style.transform = `translateX(-${percent}%)`;
-    } else {
-      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
-      ref.current.style.transform = `translateX(${translationPercentage}%)`;
-    }
-
-    setPosition(position < length - 1 ? position + 1 : 1);
-  };
-
-  const moveToLeft = _ => {
-    const currentTrans = -position * percent;
-    const translationPercentage = position !== 0 ? currentTrans + percent : currentTrans;
-
-    if (position === 1) {
-      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
-      ref.current.style.transform = `translateX(${translationPercentage}%)`;
-      setTimeout(() => {
-        ref.current.style.transition = 'none';
-        ref.current.style.transform = `translateX(-${percent * (length - 1)}%)`;
-      }, transitionDuration * 1000);
-    } else {
-      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
-      ref.current.style.transform = `translateX(${translationPercentage}%)`;
-    }
-
-    setPosition(position !== 1 ? position - 1 : length - 1);
-  };
-
-  useInterval(
-    () => {
-      console.log(delay_);
-      auto && moveToRight();
-    },
-    !isMouseOver ? delay_ : null
-  );
+  useInterval(() => { auto && moveToRight(); }, !isMouseOver ? delay_ : null);
 
   return (
     <div
@@ -95,6 +51,41 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }) =>
       <Arrow direction="right" handleClick={moveToRight} className="slider__btn" />
     </div>
   );
+
+  function moveToRight() {
+    const currentTrans = -position * percent;
+    const translationPercentage = position < length - 1 ? currentTrans - percent : currentTrans;
+    if (position === length - 1) {
+      // return to 0 (last item copy) without transition
+      ref.current.style.transition = 'none';
+      ref.current.style.transform = `translateX(${0}%)`;
+      // before item[O] to first item force to repaint
+      ref.current.style.height = ref.current.offsetHeight
+      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
+      ref.current.style.transform = `translateX(-${percent}%)`;
+    } else {
+      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
+      ref.current.style.transform = `translateX(${translationPercentage}%)`;
+    }
+    setPosition(position < length - 1 ? position + 1 : 1);
+  };
+
+  function moveToLeft(params) {
+    const currentTrans = -position * percent;
+    const translationPercentage = position !== 0 ? currentTrans + percent : currentTrans;
+    if (position === 1) {
+      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
+      ref.current.style.transform = `translateX(${translationPercentage}%)`;
+      setTimeout(() => {
+        ref.current.style.transition = 'none';
+        ref.current.style.transform = `translateX(-${percent * (length - 1)}%)`;
+      }, transitionDuration * 1000);
+    } else {
+      ref.current.style.transition = `all ${transitionDuration}s ease-in`;
+      ref.current.style.transform = `translateX(${translationPercentage}%)`;
+    }
+    setPosition(position !== 1 ? position - 1 : length - 1);
+  };
 };
 
 export default Slider;
