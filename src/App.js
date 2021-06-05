@@ -32,7 +32,7 @@ function App() {
         </div>
         <div style={{
           width: '100%',
-          background: 'white'
+          background: 'blue'
         }}>
           5
         </div>

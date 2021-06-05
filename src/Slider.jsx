@@ -2,9 +2,13 @@ import React, { useRef, useState } from 'react'
 import { useInterval } from './hooks'
 
 const Slider = ({ children, auto, speed }) => {
+  const initItem = React.Children.map(React.Children.toArray([
+    children[children.length - 1],
+    ...children
+  ]), child => child)
   const ref = useRef();
   const [position, setPosition] = useState(1);
-  const [length] = useState(children.length + 1);
+  const [length] = useState(initItem.length);
   const [percent] = useState(100 / length);
   const [isMouseOver, setIsMouseOver] = useState(false);
   const SPEED = speed || 3000;
@@ -77,8 +81,7 @@ const Slider = ({ children, auto, speed }) => {
         {'>'}
       </div>
       <div className="slider__contents" style={SlideStyle.contents} ref={ref}>
-        {children[children.length - 1]}
-        {children}
+        {initItem}
       </div>
     </div>
   );
