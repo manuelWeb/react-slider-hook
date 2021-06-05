@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import cn from 'classnames'
 import { useInterval } from './hooks'
 
-const Slider = ({ children, auto, speed }) => {
+const Slider = ({ height, children, auto, speed }) => {
   // add child item to infinite loop
   const initItem = React.Children.map(React.Children.toArray([
     children[children.length - 1],
@@ -34,12 +34,13 @@ const Slider = ({ children, auto, speed }) => {
     const movePer = position < length - 1 ? currentPer - percent : currentPer;
 
     if (position === length - 1) {
+      // return to 0 (last item copy) without transition
       ref.current.style.transition = 'none';
       ref.current.style.transform = `translateX(${0}%)`;
-      setTimeout(() => {
-        ref.current.style.transition = 'all 1s ease-in';
-        ref.current.style.transform = `translateX(-${percent}%)`;
-      }, 50);
+      // before item[O] to first item force to repaint
+      ref.current.style.height = ref.current.offsetHeight
+      ref.current.style.transition = 'all 1s ease-in';
+      ref.current.style.transform = `translateX(-${percent}%)`;
     } else {
       ref.current.style.transition = 'all 1s ease-in';
       ref.current.style.transform = `translateX(${movePer}%)`;
@@ -58,7 +59,7 @@ const Slider = ({ children, auto, speed }) => {
       setTimeout(() => {
         ref.current.style.transition = 'none';
         ref.current.style.transform = `translateX(-${percent * (length - 1)}%)`;
-      }, 300);
+      }, 1000);
     } else {
       ref.current.style.transition = 'all 1s ease-in';
       ref.current.style.transform = `translateX(${movePer}%)`;
