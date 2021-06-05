@@ -2,19 +2,20 @@ import React, { useRef, useState } from 'react'
 import cn from 'classnames'
 import { useInterval } from './hooks'
 import Arrow from './Arrow'
-
-const Slider = ({ transitionDuration, children, auto, delay }) => {
-  // add child item to infinite loop
+const avertisement = [React.createElement('h1', null, 'NO CHILDREN!'), React.createElement('h1', null, 'PUT CHILDREN...')]
+const Slider = ({ transitionDuration, children = avertisement, auto, delay }) => {
+  // add child item for infinite loop smooth transition
   const initItem = React.Children.map(React.Children.toArray([
     children[children.length - 1],
     ...children,
-  ]), child => (
+  ]), (child, x) => (
     React.cloneElement(child, {
       style: {
         ...child.props.style,
         width: `${100 / children.length}%`
       },
-      className: cn(child.props.className, 'contents__item')
+      key: x,
+      className: cn(child.props.className, 'contents__item d-flex')
     })
   ))
   const ref = useRef();
@@ -87,7 +88,7 @@ const Slider = ({ transitionDuration, children, auto, delay }) => {
         setIsMouseOver(true);
       }}
     >
-      <div className="slider__contents" style={SlideStyle.contents} ref={ref}>
+      <div className="slider__contents d-flex" style={SlideStyle.contents} ref={ref}>
         {initItem}
       </div>
       <Arrow direction="left" handleClick={moveToLeft} className="slider__btn" />
