@@ -29,6 +29,7 @@ body {
     }
   }
   &__btn {
+    user-select: none;
     display: flex;
     position: absolute;
     top: 0;
@@ -41,7 +42,9 @@ body {
     &:hover {
       transform: scale(1.1);
     }
-    >img {
+  }
+  .btn {
+    &__arrow {
       $size: 16px;
       padding: $size;
       height: $size;
@@ -50,8 +53,6 @@ body {
       border-radius: 50%;
 
     }
-  }
-  .btn {
     &--right {
       right: 0;
     }

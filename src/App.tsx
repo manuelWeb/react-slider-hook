@@ -7,13 +7,13 @@ function App() {
     <div className="App">
       <h2>Slider</h2>
       <Slider delay={2} transitionDuration={0.35} auto>
-        {/* {images.map((image, idx) => {
+        {images.map((image, idx) => {
           return (
             <div key={idx} style={{ display: 'flex' }}>
               <img src={image} alt="" />
             </div>
           )
-        })} */}
+        })}
       </Slider>
     </div>
   );

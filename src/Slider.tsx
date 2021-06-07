@@ -2,15 +2,15 @@ import React, { useRef, useState } from 'react'
 import cn from 'classnames'
 import { useInterval } from './hooks'
 import Arrow from './Arrow'
-const avertisement = [React.createElement('h1', null, 'NO CHILDREN!'), React.createElement('h1', null, 'PUT CHILDREN...')]
+const avertisement: any = [React.createElement('h1', null, 'NO CHILDREN!'), React.createElement('h1', null, 'PUT CHILDREN...')]
 
-const Slider = ({ transitionDuration, children = avertisement, auto, delay }) => {
+const Slider = ({ transitionDuration, children = avertisement, auto, delay }: { transitionDuration: number, children: any[], auto: boolean, delay: number }) => {
   // add child item for infinite loop smooth transition
   const initItem = React.Children.map(React.Children.toArray([
     children[children.length - 1],
     ...children,
-  ]), (child, x) => (
-    React.cloneElement(child, {
+  ]), (child: any, x) => (
+    React.cloneElement(child as any, {
       style: {
         ...child.props.style,
         width: `${100 / children.length}%`
@@ -19,12 +19,12 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }) =>
       className: cn(child.props.className, 'contents__item d-flex')
     })
   ))
-  const ref = useRef();
+  const ref: any = useRef();
   const [position, setPosition] = useState(1);
   const [length] = useState(initItem.length);
   const [percent] = useState(100 / length);
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const delay_ = ((delay) * 1000 - transitionDuration) || 3000;
+  const delay_: number | any = ((delay) * 1000 - transitionDuration) || 3000;
   const SlideStyle = {
     contents: {
       width: `${length * 100}%`,
@@ -44,7 +44,7 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }) =>
         setIsMouseOver(true);
       }}
     >
-      <div className="slider__contents d-flex" style={SlideStyle.contents} ref={ref}>
+      <div className="slider__contents d-flex" style={SlideStyle.contents} ref={ref as any}>
         {initItem}
       </div>
       <Arrow direction="left" handleClick={moveToLeft} className="slider__btn" />
@@ -70,7 +70,7 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }) =>
     setPosition(position < length - 1 ? position + 1 : 1);
   };
 
-  function moveToLeft(params) {
+  function moveToLeft() {
     const currentTrans = -position * percent;
     const translationPercentage = position !== 0 ? currentTrans + percent : currentTrans;
     if (position === 1) {
