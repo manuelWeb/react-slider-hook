@@ -10,10 +10,11 @@ body {
 .d-flex {
   display: flex;
 }
+$primary-light: #fff0f6;
 
 .slider {
   min-height: 280px;
-  background: #ccc;
+  background: $primary-light;
   overflow: hidden;
   display: flex;
   flex-direction: column;
