@@ -5,11 +5,11 @@ import images from './images'
 function App() {
   return (
     <div className="App">
-      <h2>Slider</h2>
-      <Slider delay={2} transitionDuration={0.35} auto>
+      <h2>Slider or carousel ?</h2>
+      <Slider delay={6} transitionDuration={0.35} auto={true}>
         {images.map((image, idx) => {
           return (
-            <div key={idx} style={{ display: 'flex' }}>
+            <div key={idx}>
               <img src={image} alt="" />
             </div>
           )

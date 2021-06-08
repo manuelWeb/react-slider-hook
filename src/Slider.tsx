@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import cn from 'classnames'
-import { useInterval } from './hooks'
+import { useInterval } from './UseInterval'
 import Arrow from './Arrow'
 import { ISliderProps } from './ISliderProps'
 
@@ -16,6 +16,7 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }: IS
     ...children,
   ]), (child, x) => {
     if (React.isValidElement(child)) {
+      // React.Children.map(child, (c, i) => console.log(c))
       return (
         React.cloneElement(child, {
           style: {
@@ -33,13 +34,20 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }: IS
   const [length] = useState(initItem.length);
   const [percent] = useState(100 / length);
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const delay_ = ((delay) * 1000 - transitionDuration) || 3000;
+  const delay_ = (delay && ((delay) * 1000 - transitionDuration)) || 3000;
   const SlideStyle = {
     contents: {
       width: `${length * 100}%`,
       transform: `translateX(-${percent}%)`
     }
   }
+  useEffect(() => {
+    // add bem css class on img tag
+    const nestedImg = ref.current?.getElementsByTagName('img');
+    if (nestedImg) {
+      Array.from(nestedImg).map(i => i.classList.add('item__img'))
+    }
+  })
 
   useInterval(() => { auto && moveToRight(); }, !isMouseOver ? delay_ : null);
 
@@ -71,9 +79,8 @@ const Slider = ({ transitionDuration, children = avertisement, auto, delay }: IS
       // return to 0 (last slide copy) without transition
       ref.current.style.transition = 'none';
       ref.current.style.transform = `translateX(${0}%)`;
-      // before slide[O] to first slide force to repaint
-      // @ts-ignore
-      ref.current.style.height = ref.current.offsetHeight
+      // force browser to repaint before slide[O] to first slide
+      ref.current.offsetHeight.toString()
       ref.current.style.transition = `all ${transitionDuration}s ease-in`;
       ref.current.style.transform = `translateX(-${percent}%)`;
     } else {
