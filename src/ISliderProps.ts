@@ -16,3 +16,18 @@ export interface ISliderProps {
    */
   delay?: number | 3000
 };
+
+export interface IArrowProps {
+  /**
+   * determine left or right svg display
+   */
+  direction: string;
+  /**
+   * trigger next or prev slide
+   */
+  handleClick: React.MouseEventHandler<HTMLDivElement>;
+  /**
+   * add class
+   */
+  className: string;
+}

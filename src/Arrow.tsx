@@ -1,13 +1,7 @@
-import React from 'react'
 import cn from 'classnames'
 import leftArrow from './img/left-arrow.svg'
 import rightArrow from './img/right-arrow.svg'
-
-interface IArrowProps {
-  direction: string;
-  handleClick: React.MouseEventHandler<HTMLDivElement>;
-  className: string;
-}
+import { IArrowProps } from './ISliderProps'
 
 const Arrow = ({ direction, handleClick, className }: IArrowProps) => {
   return (
@@ -17,7 +11,6 @@ const Arrow = ({ direction, handleClick, className }: IArrowProps) => {
         cn(className, `btn--${(direction === 'right' && 'right') || 'left'}`)
       }
     >
-
       <img className="btn__arrow" src={direction === 'right' ? rightArrow : leftArrow} alt="" />
     </div >
   )

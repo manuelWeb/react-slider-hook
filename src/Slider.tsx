@@ -8,7 +8,13 @@ const avertisement: JSX.Element[] = [
   React.createElement('h1', null, 'NO CHILDREN!'),
   React.createElement('h1', null, 'PUT CHILDREN...')
 ]
-
+/**
+ *
+ * @props transitionDuration time in sec for transition
+ * @props delay time pause in sec between each slides
+ * @props auto trigger autoplay
+ * @returns JSX.Element[]
+ */
 const Slider = ({ transitionDuration, children = avertisement, auto, delay }: ISliderProps) => {
   // add child item for infinite loop smooth transition
   const initItem = React.Children.map(React.Children.toArray([
