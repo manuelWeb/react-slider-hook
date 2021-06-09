@@ -1,3 +1,13 @@
+# commit messages
+
+- [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Examples](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+
+# Hooks and setInterval
+
+!important
+@see [declarative setInterval](https://overreacted.io/fr/making-setinterval-declarative-with-react-hooks/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
