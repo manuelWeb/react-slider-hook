@@ -1,4 +1,5 @@
 $primary-light: #fff0f6;
+$warning: #FF0000;
 .d-flex { display: flex; }
 body {
   margin: 0;
@@ -24,6 +25,9 @@ body {
     &__item {
       user-select: none;
       // border: 4px solid rgba($color: #33ff00, $alpha: .3);
+      &--warning{
+        color: $warning;
+      }
     }
   }
 
