@@ -1,3 +1,5 @@
+$primary-light: #fff0f6;
+.d-flex { display: flex; }
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,10 +9,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.d-flex {
-  display: flex;
-}
-$primary-light: #fff0f6;
+/**
+  REMOVE before in project
+*/
 
 .slider {
   min-height: 280px;
@@ -19,18 +20,20 @@ $primary-light: #fff0f6;
   display: flex;
   flex-direction: column;
   position: relative;
-  // &__contents { }
+
   .contents {
     &__item {
       user-select: none;
       // border: 4px solid rgba($color: #33ff00, $alpha: .3);
     }
   }
+
   .item {
     &__img {
       width: 100%;
     }
   }
+
   &__btn {
     user-select: none;
     display: flex;
@@ -46,6 +49,7 @@ $primary-light: #fff0f6;
       transform: scale(1.1);
     }
   }
+
   .btn {
     &__arrow {
       $size: 16px;
@@ -54,7 +58,6 @@ $primary-light: #fff0f6;
       width: $size;
       background: white;
       border-radius: 50%;
-
     }
     &--right {
       right: 0;
