@@ -29,6 +29,8 @@ body {
         justify-content: center;
         align-items: center;
         color: $warning;
+        // add rc in warning react element
+        white-space: pre-line;
       }
     }
   }
