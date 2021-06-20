@@ -4,9 +4,9 @@ import { useInterval } from './UseInterval'
 import Arrow from './Arrow'
 import { ISliderProps } from './ISliderProps'
 
-const avertisement: JSX.Element[] = [
-  React.createElement('h1', null, 'NO CHILDREN!'),
-  React.createElement('h1', null, 'PUT CHILDREN...')
+const warning: JSX.Element[] = [
+  React.createElement('h1', null, 'MISSING CHILDREN!'),
+  React.createElement('p', null, 'Hey! ADD div > img in you\'re SLider:\n <Slider>\n → <div><img/></div>\n → <div><img/></div>\n </Slider>')
 ]
 /**
  *
@@ -15,24 +15,44 @@ const avertisement: JSX.Element[] = [
  * @props auto trigger autoplay
  * @returns JSX.Element[]
  */
-const Slider = ({ transitionDuration, children = avertisement, auto, delay }: ISliderProps) => {
-  // add child item for infinite loop smooth transition
+const Slider = ({ transitionDuration, children = warning, auto, delay }: ISliderProps) => {
+  // add one child item for infinite loop smooth transition
   const initItem = React.Children.map(React.Children.toArray([
     children[children.length - 1],
     ...children,
   ]), (child, x) => {
     if (React.isValidElement(child)) {
-      // React.Children.map(child, (c, i) => console.log(c))
-      return (
-        React.cloneElement(child, {
-          style: {
-            ...child.props.style,
-            width: `${100 / children.length}%`
-          },
-          key: x,
-          className: cn(child.props.className, 'contents__item d-flex')
-        })
-      )
+      /**
+       * TEST: if {child is [p(copy),h1,p] so that's div>img(min*2) is missing}
+       * else {return child img[] exist}
+       */
+      let isWarningMissingChildElement = ((x === 0 && child.type === 'p')
+        || (x === 1 && child.type === 'h1')
+        || (x === 2 && child.type === 'p')) && true
+
+      if (isWarningMissingChildElement) {
+        return (
+          React.cloneElement(child, {
+            style: {
+              ...child.props.style,
+              width: `${100 / children.length}%`,
+            },
+            key: x,
+            className: cn(child.props.className, 'contents__item contents__item--warning d-flex')
+          })
+        )
+      } else {
+        return (
+          React.cloneElement(child, {
+            style: {
+              ...child.props.style,
+              width: `${100 / children.length}%`
+            },
+            key: x,
+            className: cn(child.props.className, 'contents__item d-flex')
+          })
+        )
+      }
     }
   })
   const ref = useRef<HTMLDivElement>(null);
