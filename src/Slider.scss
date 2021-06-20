@@ -26,6 +26,8 @@ body {
       user-select: none;
       // border: 4px solid rgba($color: #33ff00, $alpha: .3);
       &--warning{
+        justify-content: center;
+        align-items: center;
         color: $warning;
       }
     }
