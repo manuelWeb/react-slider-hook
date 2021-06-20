@@ -36,6 +36,11 @@ body {
       width: 100%;
     }
   }
+  &:hover{
+    .slider__btn {
+      opacity: 1;
+    }
+  }
 
   &__btn {
     user-select: none;
@@ -47,7 +52,8 @@ body {
     justify-content: center;
     cursor: pointer;
     align-items: center;
-    transition: transform ease-in 0.1s;
+    opacity: .32;
+    transition: all ease-in 0.32s;
     &:hover {
       transform: scale(1.1);
     }
@@ -70,4 +76,13 @@ body {
     }
   }
 
+}
+
+/**
+* avoid opacity on touch devices
+*/
+@media (hover: none) {
+  .slider {
+    &__btn { opacity: 1; }
+  }
 }
