@@ -1,3 +1,5 @@
+import React from "react"
+interface SlideProps { type: 'div' }
 export interface ISliderProps {
   /**
    * determine the translation time
@@ -6,7 +8,10 @@ export interface ISliderProps {
   /**
    * Slides markup
    */
-  children?: JSX.Element[],
+  children: SlideProps[],
+  // children: JSX.Element[],  // children: React.ReactNode[],
+  // children: React.ReactChildren[] // children: JSX.Element[] & ReactNode & ReactChild[],
+  // children: | React.ReactChild | React.ReactChild[], // children: Array<React.ReactChild>,
   /**
    * turn on autoplay
    */
